@@ -1,40 +1,33 @@
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import "./style.scss";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "./context/AuthContext";
+import React from "react";
+import { BrowserRouter as Router,  } from "react-router-dom";
+import { Switch, Route } from 'react-router-dom';
+import { auth } from "./firebase";
+import chat from "./chat";
 
-function App() {
-  const { currentUser } = useContext(AuthContext);
 
-  const ProtectedRoute = ({ children }) => {
-    if (!currentUser) {
-      return <Navigate to="/login" />;
-    }
+const App = () => {
+  const [user, setUser] = React.useState(null);
 
-    return children
-  };
+  React.useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      setUser(user);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/">
-          <Route
-            index
-            element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <Router>
+      <div>
+        <Switch>
+          <Route exact path="/">
+            {user ? <chat /> : <SignIn />}
+          </Route>
+          {/* Otros componentes o rutas */}
+        </Switch>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
