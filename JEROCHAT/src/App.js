@@ -1,9 +1,7 @@
 import React from "react";
-import { BrowserRouter as Router,  } from "react-router-dom";
-import { Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Actualizamos el import
 import { auth } from "./firebase";
-import chat from "./chat";
-
+import ChatRoom from "./chat";
 
 const App = () => {
   const [user, setUser] = React.useState(null);
@@ -19,15 +17,16 @@ const App = () => {
   return (
     <Router>
       <div>
-        <Switch>
+        {/* Reemplazamos Switch con Routes */}
+        <Routes>
           <Route exact path="/">
             {user ? <chat /> : <SignIn />}
           </Route>
           {/* Otros componentes o rutas */}
-        </Switch>
+        </Routes>
       </div>
     </Router>
   );
 };
 
-export default App;
+export default App;
