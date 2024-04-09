@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firestore App</title>
+    <link rel="stylesheet" href="tore.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Mensajes</h1>
+        <form >
+            <div class="form-group">
+            <input type="text" id="msg" class="form-control" placeholder="Escribe tu mensaje...">
+            
+            <a href="#" class="btn btn-succes" onclick="guardar()">Enviar   </a>
+        <h1 id="Imprime"></h1>
+            <a href="#" class="btn btn-succes" onclick="Ver()"> VER  </a>
+        </div>
+        </form>
+        
+
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+    <script src="tore.js"></script>
+    <script src="guardar.js"></script>
+    <script src="ver.js"></script>
+</body>
+</html>

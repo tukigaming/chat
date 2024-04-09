@@ -37,11 +37,13 @@ export class ManageAccount {
         window.location.href = "Index.html";
         // Mostrar alerta de inicio de sesión exitoso
         alert("Has iniciado sesión correctamente. Serás redirigido a la página principal.");
+        window.location.href = "tore.html";
       })
       .catch((error) => {
         console.error(error.message);
                 // Mostrar alerta de error de inicio de sesión
                 alert("Error al iniciar sesión: " + error.message);
+                
       });
   }
 
